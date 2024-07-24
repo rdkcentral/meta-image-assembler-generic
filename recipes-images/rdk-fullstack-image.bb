@@ -1,7 +1,4 @@
-SUMMARY = "A image just capable of allowing a device to boot."
-
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-IMAGE_LINGUAS = " "
+SUMMARY = "RDK Full Stack image"
 
 LICENSE = "MIT"
 IMAGE_INSTALL = " \
@@ -12,21 +9,14 @@ IMAGE_INSTALL = " \
                  "
 inherit core-image
 
-inherit custom-rootfs-creation
+inherit custom-rootfs-configuration
 
 IMAGE_ROOTFS_SIZE ?= "8192"
 IMAGE_ROOTFS_EXTRA_SPACE_append = "${@bb.utils.contains("DISTRO_FEATURES", "systemd", " + 4096", "" ,d)}"
 
-PACKAGE_TYPE ="VBN_ENTOS"
-
 create_init_link() {
         ln -sf /sbin/init ${IMAGE_ROOTFS}/init
 }
-
-# All kirstone builds use qt515 and dunfell use qt512
-yocto_suffix = "${@bb.utils.contains('DISTRO_FEATURES', 'kirkstone', 'kirkstone', 'dunfell', d)}"
-qt_version = "${@bb.utils.contains('DISTRO_FEATURES', 'kirkstone', 'qt515', 'qt512', d)}"
-
 
 ROOTFS_POSTPROCESS_COMMAND += "create_init_link; "
 
