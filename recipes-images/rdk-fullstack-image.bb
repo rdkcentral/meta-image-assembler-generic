@@ -8,6 +8,7 @@ IMAGE_INSTALL = " \
                  packagegroup-foundation-layer \
                  packagegroup-vendor-layer \
                  packagegroup-middleware-generic \
+                 packagegroup-application-layer \
                  "
 inherit core-image
 
