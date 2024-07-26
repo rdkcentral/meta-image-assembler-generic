@@ -9,7 +9,7 @@ IMAGE_INSTALL = " \
                  "
 inherit core-image
 
-inherit custom-rootfs-configuration
+inherit custom-rootfs-creation
 
 IMAGE_ROOTFS_SIZE ?= "8192"
 IMAGE_ROOTFS_EXTRA_SPACE_append = "${@bb.utils.contains("DISTRO_FEATURES", "systemd", " + 4096", "" ,d)}"
